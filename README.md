@@ -9,3 +9,4 @@
 - Trang Admin(1 list quản lý các nhạc đã up, có search bar, filter theo thể loại nhạc, category)
 + Trang User(Ảnh đại diện, tên, các bài nhạc đã thích) (XXX/XXX).
 - Trang Login (XXX).
+- Link git: https://github.com/Thetuanphan/Music-Media-Website.git
