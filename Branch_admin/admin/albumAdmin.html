@@ -398,7 +398,7 @@
                                         </h6>
                                         <span class="Time">4:00</span>
                                         <div class="listTool" id="album_tool">
-                                            <a id="play_1" href="./src/mp3/Laylalay-JackG5R-7003742.mp3"><i
+                                            <a class="play_1" href="../src/mp3/Laylalay-JackG5R-7003742.mp3"><i
                                                     class="fas fa-play"></i></a>
                                             <a id="play_video" href=""><i class="fas fa-video"></i></a>
                                             <a href=""><i class="fas fa-download"></i></a>
@@ -411,7 +411,11 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="audioContainer text-center ">
+                        <audio src="" controls id="audioPlayer">
+                            Sorry, your browser doesn't support html5!
+                        </audio>
+                    </div>
                 </div>
                 <!-- end phần linh làm -->
 
@@ -425,7 +429,9 @@
 
     </div>
     <script>
+        //playsong
         
+       //hide- show 
 $(".next_show").hide();
 $("#pre").click(function () {
     $(".pre_show").show(); $(".next_show").hide();
@@ -470,6 +476,35 @@ $('#actionRemove').click(function (){
     $('.remove_song').removeClass("hide");
 });
 
+    </script>
+    <script>
+        //play list
+    
+    $("#btn_add").click(function () {audioPlayer();});
+    function audioPlayer() {
+    var currentSong = 0;
+        $("#audioPlayer")[0].src = $(".play_1")[0];
+        // $("#audioPlayer")[0].play();
+        $(".play_1").click(function (e) {
+            e.preventDefault();
+            $("#audioPlayer")[0].src = this;
+            $("#audioPlayer")[0].play();
+
+            $(".list_Item").removeClass("current-song");
+            currentSong = $(this).parents("li").index();
+            $(this).parents("li").addClass("current-song");
+        });
+
+        $("#audioPlayer")[0].addEventListener("ended", function () {
+            currentSong++;
+            if (currentSong == $(".play_1").length)
+                {currentSong = 0;}
+            $(".list_Item").removeClass("current-song");
+            $(".list_Item:eq(" + currentSong + ")").addClass("current-song");
+            $("#audioPlayer")[0].src = $(".play_1")[currentSong].href;
+            $("#audioPlayer")[0].play();
+        });
+    }
     </script>
     <script src="../js/index.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>

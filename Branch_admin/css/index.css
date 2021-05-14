@@ -149,12 +149,9 @@
     width: 90%;
     height: 40px;
 }
-#playlist li a{
-    color:black;
-    text-decoration: none;
-}
-#playlist .current-song a{
-    color:blue;
+.current-song {
+    background-color: var(--primary-2);
+    border-radius: 10px;
 }
 
 #album_1{
