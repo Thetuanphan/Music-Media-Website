@@ -8,7 +8,6 @@
 - Các trang phải nằm gọn trong 1 folder(VD: TrangChu) trước khi up lên git, không up riêng lẻ từng file(mình sẽ không merge vì tốn thời gian chỉnh sửa).
 - Trang chủ: làm như mẫu https://www.spotify.com/us/ (Cẩm).
 - Trang Admin(1 list quản lý các nhạc đã up, có search bar, filter theo thể loại nhạc, category)
-+ Trang User(Ảnh đại diện, tên, các bài nhạc đã thích) (XXX/XXX).
-- Trang Login (XXX).
++ Trang User(Ảnh đại diện, tên, các bài nhạc đã thích) (Linh/Phong).
+- Trang Login (Quang).
 - Link git: https://github.com/Thetuanphan/Music-Media-Website.git
-
