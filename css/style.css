@@ -594,33 +594,6 @@ Premium section
 Responsive
  -------------------*/
 
-.footer-section {
-	background: #0a183d;
-	padding: 100px 0 85px;
-}
-
-.footer-widget {
-	padding-top: 2px;
-}
-
-.footer-widget h2 {
-	font-size: 16px;
-	color: #fff;
-	text-transform: uppercase;
-	margin-bottom: 30px;
-}
-
-.footer-widget ul {
-	list-style: none;
-}
-
-.footer-widget ul li a {
-	display: inline-block;
-	color: #6a7080;
-	font-size: 14px;
-	margin-bottom: 10px;
-}
-
 .copyright {
 	font-size: 11px;
 	text-transform: uppercase;
