@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type "text/css" href="style.css">
+    <script src="all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="loginbox">
+        <div class="loginMain">
+            <img src="image/login_icon1.jpg" class="icon">
+            <h1 class="heading1">LOGIN HERE</h1>
+            <form>
+                <p>Username</p>
+                <div class="username">
+                    <input type="text" name="user" id="user" placeholder="Enter Username">
+                </div>
+                <p>Password</p>
+                <div class="password">
+                    <input type="password" name="pass" id="pass" placeholder="Enter Password">
+                </div>
+                <br>
+                <button type="button" class="signIn" onclick="check_id()" ;>Sign In</button>
+                <br>
+                <div class="forgotPassword">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <p class="signInWith">- Or Sign In With -</p>
+                <br>
+                <button type="button" class="btn btn-info ">Facebook</button>
+                <button type="button" class="btn btn-danger">Email</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+
+</html>
