@@ -1,7 +1,25 @@
 
 $(document).ready(function() {
     //your code here
+    $("#file-upload").change(function(e){
+        var file = e.currentTarget.files[0];
+       var name = file.name
+        $("#filename").text(name);
+           // tìm thang "-"
+      var index = name.indexOf("-")
+      name = name.substr(0,index);                                      $(".list_Item:last-child .listItem--title").text(function (origText) {
+                    return name;
+                });
+      //cách ra khi gặp từ viết hoa
+    
+      
+      // alert(name);
+    });
+    
  
+ 
+ 
+    //
     audioPlayer();
     function audioPlayer() {
     var currentSong = 0;

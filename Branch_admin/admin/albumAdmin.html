@@ -117,9 +117,9 @@
                 <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
+
                         <a class="collapse-item" href="./fillter.html">Bộ lọc</a>
-                        
+
                         <!--
                          <a class="collapse-item active" href="blank.html">Nhạc Âu Mỹ</a>
                         <a class="collapse-item active" href="">Nhạc Hàn Quốc</a>
@@ -357,10 +357,10 @@
                 <div class="container mt-5">s
                     <div class="row">
                         <!-- left -->
-                        <div class="col-4  text-center albumContainerLeft">
-                            <div class="albumImg">
+                        <div class="col-lg-4  text-center albumContainerLeft">
+                            <div class="albumImg ">
                                 <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_jpeg/cover/2/7/0/6/2706df91bf6c35a1eae8a61d3fc04c9b.jpg"
-                                    alt="">
+                                    alt="" class="img-fluid">
                             </div>
                             <h4>Quang Linh album <a><i class="fas fa-edit albumDetail"></i></a></h4>
                             <p>cập nhật :13/8/2021 <a><i class="fas fa-edit albumDetail"></i></a></p>
@@ -369,24 +369,41 @@
                         </div>
 
                         <!-- right -->
-                        <div class="col-6" id="album">
-                            <div class="addSong d-flex">
+                        <div class="col-lg-8 col-xl-6 " id="album">
+                            <!-- <div class="addSong d-flex">
                                 <h4><strong>Thêm bài hát</strong></h4>
-                                <div class="addNewSong">
+                                <div class="addNewSong d-flex">
                                     <input id="addnewsong_box" type="text">
                                     <button id="btn_add"><i class="fas fa-plus"></i></button>
                                 </div>
-                               
+
+                            </div> -->
+                            <div class="actionRemoveContain ">
+                                <!-- upload -->
+
+                                <button class="actionUpload">
+                                    <label class="custom-file-upload">
+                                        <input type="file" id="file-upload" />
+                                        <i class="fas fa-upload"></i>Tải
+                                        lên
+                                    </label>
+                                </button>
+                                <!--  -->
+                                <button id="actionRemove" onclick="acctionRemove()"><i
+                                        class="fas fa-trash"></i></button>
+                                <div class="audioContainer text-center ">
+                                    <audio src="" controls id="audioPlayer">
+                                        Sorry, your browser doesn't support html5!
+                                    </audio>
+                                </div>
+                                <hr>
                             </div>
-                            <div class="actionRemoveContain">
-                            <button id="actionRemove" onclick="acctionRemove()"><i class="fas fa-trash"></i></button>
-                        </div>
                             <!-- thêm xóa sửa ở đây -->
                             <div id="album_1">
                                 <ol class="listSong" id="listsong">
                                     <li class="list_Item" id="song-0">
                                         <h6 class="listItem--title">
-                                            Lay la lay
+                                            Laylalay
                                         </h6>
                                         <span class="Time">4:00</span>
                                         <div class="listTool" id="album_tool">
@@ -394,7 +411,8 @@
                                                     class="fas fa-play"></i></a>
                                             <a id="play_video" href=""><i class="fas fa-video"></i></a>
                                             <a href=""><i class="fas fa-download"></i></a>
-                                            <a class="remove_song hide" id="delete-song-0"><i class="fas fa-trash"></i></a>
+                                            <a class="remove_song hide" id="delete-song-0"><i
+                                                    class="fas fa-trash"></i></a>
                                         </div>
                                     </li>
 
@@ -403,11 +421,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="audioContainer text-center ">
-                        <audio src="" controls id="audioPlayer">
-                            Sorry, your browser doesn't support html5!
-                        </audio>
-                    </div>
+
                 </div>
                 <!-- end phần linh làm -->
 
@@ -422,82 +436,98 @@
     </div>
     <script>
         //playsong
-        
-       //hide- show 
-$(".next_show").hide();
-$("#pre").click(function () {
-    $(".pre_show").show(); $(".next_show").hide();
-});
-$("#next").click(function () {
-    $(".next_show").show(); $(".pre_show").hide();
-});
+        //upload song
+        document.getElementById("file-upload").addEventListener("change", handleFiles, false);
 
-//add
-var btnAdd = $('#btn_add');
-var contentList = $(".list_Item").html();
+        function handleFiles(event) {
+            addnewsong();
+            audioPlayer();
+            var files = event.target.files;
+            var url = URL.createObjectURL(files[0])
+            $(".list_Item:last-child .listTool .play_1").attr("href", "" + url + "");
+            document.getElementById("audioPlayer").load();
 
-btnAdd.click(function () {
-    var newSong = $('#addnewsong_box').val();
-    $("#listsong").append('<li class="list_Item"></li>');
-    $(".list_Item:last-child").append(contentList);
-    $(".list_Item:last-child .listItem--title").text(function (origText) {
-        return newSong;
-    });
-    var index = $(".list_Item:last-child").index();
-    $(".list_Item:last-child").attr('id', 'song-' + index + '');
+        }
 
-    $('.list_Item:last-child').find("a.remove_song").attr('id', 'delete-song-' + index + '');
-    
-});
-//remove
-function acctionRemove() {
-$('.remove_song').click(function () {
-    var currentId = this.id;
-    var index = currentId.slice(-1);
-    $("#song-" + index + "").remove();
+        //hide- show 
+        $(".next_show").hide();
+        $("#pre").click(function () {
+            $(".pre_show").show(); $(".next_show").hide();
+        });
+        $("#next").click(function () {
+            $(".next_show").show(); $(".pre_show").hide();
+        });
 
-    index--;
-    while (index < $('.list_Item').length) {
-        $('#song-' + (index + 1) + '').attr('id', 'song-' + index + '');
-        $('#delete-song-' + (index + 1) + '').attr('id', 'delete-song-' + index + '');
-        index++;
-    }
-})};
+        //add
+        var btnAdd = $('#btn_add');
+        var contentList = $(".list_Item").html();
 
-$('#actionRemove').click(function (){
-    $('.remove_song').removeClass("hide");
-});
+        btnAdd.click(function () {
+            addnewsong();
+        });
+
+        function addnewsong() {
+            var newSong = $('#addnewsong_box').val();
+            $("#listsong").append('<li class="list_Item"></li>');
+            $(".list_Item:last-child").append(contentList);
+            $(".list_Item:last-child .listItem--title").text(function (origText) {
+                return newSong;
+            });
+            var index = $(".list_Item:last-child").index();
+            $(".list_Item:last-child").attr('id', 'song-' + index + '');
+            $('.list_Item:last-child').find("a.remove_song").attr('id', 'delete-song-' + index + '');
+
+        }
+        //remove
+        function acctionRemove() {
+            $('.remove_song').click(function () {
+                var currentId = this.id;
+                var index = currentId.slice(-1);
+                $("#song-" + index + "").remove();
+
+                index--;
+                while (index < $('.list_Item').length) {
+                    $('#song-' + (index + 1) + '').attr('id', 'song-' + index + '');
+                    $('#delete-song-' + (index + 1) + '').attr('id', 'delete-song-' + index + '');
+                    index++;
+                }
+            })
+        };
+
+        $('#actionRemove').click(function () {
+            $('.remove_song').removeClass("hide");
+        });
 
     </script>
     <script>
         //play list
-    
-    $("#btn_add").click(function () {audioPlayer();});
-    function audioPlayer() {
-    var currentSong = 0;
-        $("#audioPlayer")[0].src = $(".play_1")[0];
-        // $("#audioPlayer")[0].play();
-        $(".play_1").click(function (e) {
-            e.preventDefault();
-            $("#audioPlayer")[0].src = this;
-            $("#audioPlayer")[0].play();
 
-            $(".list_Item").removeClass("current-song");
-            currentSong = $(this).parents("li").index();
-            $(this).parents("li").addClass("current-song");
-        });
+        $("#btn_add").click(function () { audioPlayer(); });
+        function audioPlayer() {
+            var currentSong = 0;
+            $("#audioPlayer")[0].src = $(".play_1")[0];
+            // $("#audioPlayer")[0].play();
+            $(".play_1").click(function (e) {
+                e.preventDefault();
+                $("#audioPlayer")[0].src = this;
+                $("#audioPlayer")[0].play();
 
-        $("#audioPlayer")[0].addEventListener("ended", function () {
-            currentSong++;
-            if (currentSong == $(".play_1").length)
-                {currentSong = 0;}
-            $(".list_Item").removeClass("current-song");
-            $(".list_Item:eq(" + currentSong + ")").addClass("current-song");
-            $("#audioPlayer")[0].src = $(".play_1")[currentSong].href;
-            $("#audioPlayer")[0].play();
-        });
-    }
+                $(".list_Item").removeClass("current-song");
+                currentSong = $(this).parents("li").index();
+                $(this).parents("li").addClass("current-song");
+            });
+
+            $("#audioPlayer")[0].addEventListener("ended", function () {
+                currentSong++;
+                if (currentSong == $(".play_1").length) { currentSong = 0; }
+                $(".list_Item").removeClass("current-song");
+                $(".list_Item:eq(" + currentSong + ")").addClass("current-song");
+                $("#audioPlayer")[0].src = $(".play_1")[currentSong].href;
+                $("#audioPlayer")[0].play();
+            });
+        }
     </script>
+
     <script src="../js/index.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>
 

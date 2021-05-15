@@ -117,9 +117,9 @@
                 <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
+
                         <a class="collapse-item" href="./fillter.html">Bộ lọc</a>
-                        
+
                         <!--
                          <a class="collapse-item active" href="blank.html">Nhạc Âu Mỹ</a>
                         <a class="collapse-item active" href="">Nhạc Hàn Quốc</a>
@@ -443,45 +443,56 @@
                                             </div>
                                             <!--  -->
                                             <div class="fillter-3">
-                                            <!-- theo thể loại -->
-                                            <div class="fillterflowCategory" >
-                                                <h5>Thể loại</h5>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-primary dropdown-toggle" type="button"
-                                                        data-toggle="dropdown">category
+                                                <!-- theo thể loại -->
+                                                <div class="fillterflowCategory">
+                                                    <h5>Thể loại</h5>
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-primary dropdown-toggle btn_fillter_3" type="button"
+                                                            data-toggle="dropdown" id="btn_category">category
                                                         </a>
-                                                    <ul class="dropdown-menu categoryContain mt-2" id="categoryContain-1">
-                                                        <li class="categoryItem"><a href="#" class="btn">Nhạc trẻ</a>
-                                                        </li>
-                                                        <li class="categoryItem"><a href="#" class="btn">Nhạc rap</a>
-                                                        </li>
-                                                        <li class="categoryItem"><a href="#" class="btn">Nhạc cách
-                                                                mạng</a></li>
-                                                        <li class="categoryItem"><a href="#" class="btn">Vpop</a></li>
-                                                        <li class="categoryItem"><a href="#" class="btn">Kpop</a></li>
-                                                        <li class="categoryItem"><a href="#" class="btn">US_UK</a></li>
-                                                    </ul>
+                                                        <ul class="dropdown-menu categoryContain mt-2"
+                                                            id="categoryContain-1">
+                                                            <li class="categoryItem"><a href="#" class="btn">Nhạc
+                                                                    trẻ</a>
+                                                            </li>
+                                                            <li class="categoryItem"><a href="#" class="btn">Nhạc
+                                                                    rap</a>
+                                                            </li>
+                                                            <li class="categoryItem"><a href="#" class="btn">Nhạc cách
+                                                                    mạng</a></li>
+                                                            <li class="categoryItem"><a href="#" class="btn">Vpop</a>
+                                                            </li>
+                                                            <li class="categoryItem"><a href="#" class="btn">Kpop</a>
+                                                            </li>
+                                                            <li class="categoryItem"><a href="#" class="btn">US_UK</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>                            
-                                            <!--  theo quốc gia -->
-                                            <div class="fillterflowCategory" >
-                                                <h5>Quốc gia</h5>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-primary dropdown-toggle" type="button"
-                                                        data-toggle="dropdown">contries
+                                                <!--  theo quốc gia -->
+                                                <div class="fillterflowCategory">
+                                                    <h5>Quốc gia</h5>
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-primary dropdown-toggle btn_fillter_3" type="button"
+                                                            data-toggle="dropdown" id="btn_contries">contries
                                                         </a>
-                                                    <ul class="dropdown-menu categoryContain mt-2" id="categoryContain-2">
-                                                        <li class="categoryItem"><a href="#" class="btn">Việt Nam</a>
-                                                        </li>
-                                                        <li class="categoryItem"><a href="#" class="btn">Hàn Quốc</a>
-                                                        </li>
-                                                        <li class="categoryItem"><a href="#" class="btn">Trung Quốc</a></li>
-                                                        <li class="categoryItem"><a href="#" class="btn">US_UK</a></li>
-                                                    </ul>
+                                                        <ul class="dropdown-menu categoryContain mt-2"
+                                                            id="categoryContain-2">
+                                                            <li class="categoryItem"><a href="#" class="btn">Việt
+                                                                    Nam</a>
+                                                            </li>
+                                                            <li class="categoryItem"><a href="#" class="btn">Hàn
+                                                                    Quốc</a>
+                                                            </li>
+                                                            <li class="categoryItem"><a href="#" class="btn">Trung
+                                                                    Quốc</a></li>
+                                                            <li class="categoryItem"><a href="#" class="btn">US_UK</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!--  -->
+                                            <!--  -->
                                             <div class="card-footer bg-white row mx-0 mb-2 justify-content-between">
                                                 <button class="btn btn-secondary px-4">Cancel</button> <button
                                                     class="btn btn-success ml-auto"><span class="fa fa-filter"></span>
@@ -530,6 +541,18 @@
             });
 
         });
+        // btn
+        $('.categoryItem').click(function (){
+      var contentText = $(this).text(); 	
+	if($(this).parents('.categoryContain').attr('id') == "categoryContain-1"){		
+		$('#btn_category').text(contentText);
+		$('#btn_category').removeClass("dropdown-toggle");
+	 }
+	if($(this).parents('.categoryContain').attr('id') == "categoryContain-2"){		
+		$('#btn_contries').text(contentText);
+		$('#btn_contries').removeClass("dropdown-toggle");
+	 }
+ });
     </script>
     <script src="../js/index.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>

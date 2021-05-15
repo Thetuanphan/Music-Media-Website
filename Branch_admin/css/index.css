@@ -7,6 +7,13 @@
     --primary-5: #94C6F2;
 }
 /* container */
+hr{
+    padding: 0;
+    height: 4px;
+    background-color: #cdcdcd;
+    width: 50%;
+    margin: 0 auto;
+}
 #content{
     background-color: var(--primary-4);
 }
@@ -96,8 +103,8 @@
     box-shadow: none;
 }
 .albumImg{
-    width: 320px;
-    height: 320px;
+    width: 100%;
+
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 40px auto;
@@ -137,6 +144,14 @@
     }
 }
 
+
+#addnewsong_box{
+    cursor: text;
+    margin-right: 10px;
+    height: 30px;
+}
+
+
 /* playlist */
  .audioContainer{
     width: 100%;
@@ -144,6 +159,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
   }
 .audioContainer audio{
     width: 90%;
@@ -156,6 +172,7 @@
 
 #album_1{
     padding: 10px 0 0 40px;
+    margin-top: -20px;
 }
 .listSong{
     width: 100%;
@@ -211,8 +228,8 @@
 }
 #btn_add{
     border-radius: 8px;
-    width: 45px;
-    height: 45px;
+    min-width: 45px;
+    /* height: 30px; */
 }
 
 #remove_song{
@@ -277,12 +294,22 @@ margin-top: 20px;
 #actionRemove{
     border-radius: 8px;
     width: 45px;
-    height: 45px;
     margin-top: 10px;
-   
 }
+/* nút tải lên */
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    
+    display: inline-block;
 
-
+    cursor: pointer;
+}
+.actionUpload{
+    height: 30px;
+    border-radius: 8px;
+}
 /* Phần này là Phong CSS */
 /* chỉnh sửa avt */
 .avtUser
@@ -409,3 +436,23 @@ input:focus {
     display: flex;
 }
 /* filler */
+
+/* responsiv  playlist*/
+@media only screen and (max-width: 994px) {
+    .albumImg {
+      width: 320px;
+      height: 320px;
+    }
+    #album{
+        margin-top: 40px;
+    }
+   
+  }
+
+  @media only screen and (min-width: 1270px) {
+    .albumImg {
+        width: 320px;
+        height: 320px;
+      }
+  }
+
