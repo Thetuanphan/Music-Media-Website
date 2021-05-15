@@ -19,9 +19,10 @@ hr{
 }
 /* item */
 .topMusicItem .itemTitle{
-    width: 175px;
+    width: 85%;
     font-size: 14px;
     color: var(--primary-3);
+    text-align: left;
 }
 .topMusicTitle{
     font-weight: 600;
@@ -150,6 +151,10 @@ hr{
     margin-right: 10px;
     height: 30px;
 }
+.addPlaylistIcon{
+    font-size: 30px;
+    margin-top: 35%
+}
 
 
 /* playlist */
@@ -253,18 +258,27 @@ hr{
     height: 100px;
     width: 100px;
 }
+.userProflie h4{
+    color: var(--primary-3);
+}
     /* nav */
 .galleryLeft-content-nav {
     list-style-type: none;
     border: 1px solid #cdcdcd;
     border-radius: 20px;
     display: inline-block;
-    padding: 5px 20px;
-}
 
+    color: var(--primary-3);
+}
+.user_nav_active{
+    background-color: #B796FF;
+    font-weight: 600;
+    color: #E6DE70;
+}
 .galleryLeft-content-nav li{
     display: inline-block;
-    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 /* gallery  right*/
 
@@ -276,10 +290,15 @@ hr{
     align-items: center;
     padding: 10px 40px;
 }
+
 .listContainerUserBtn i{
     margin-right: 20px;
+   
 }
-
+.listContainerUserBtn label{
+    margin: 0;
+    height: 100%;
+}
 /* dashbord */
 #pieChart{
 display: block; 
@@ -446,6 +465,9 @@ input:focus {
     #album{
         margin-top: 40px;
     }
+    .galleryRight img{
+        display: none;
+    }
    
   }
 
@@ -456,3 +478,31 @@ input:focus {
       }
   }
 
+  @media only screen and (max-width: 1100px) {
+    .actionContainer {
+        visibility: hidden;
+    }
+   
+  }
+  @media only screen and (max-width: 815px) {
+    .custom-file-upload span,.listContainerUserBtn span{
+        display: none;
+    }
+    .custom-file-upload i,.listContainerUserBtn i{
+        margin: 0;
+    }
+    .listContainerUserHeader {
+        justify-content: space-between;
+    }
+  }
+  @media only screen and (max-width: 425px) {
+    .listTool a:nth-child(2),.listTool a:nth-child(3),.topMusicItem .itemTitle{
+        display: none;
+    }
+    .topMusicItem{
+        margin-bottom: 20px;
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+    .galleryRight img{ display: none;}
+  }

@@ -1,6 +1,18 @@
 
 $(document).ready(function() {
     //your code here
+
+    document.getElementById("file-upload").addEventListener("change", handleFiles, false);
+
+        function handleFiles(event) {
+            addnewsong();
+            audioPlayer();
+            var files = event.target.files;
+            var url = URL.createObjectURL(files[0])
+            $(".list_Item:last-child .listTool .play_1").attr("href", "" + url + "");
+            document.getElementById("audioPlayer").load();
+
+        }
     $("#file-upload").change(function(e){
         var file = e.currentTarget.files[0];
        var name = file.name
@@ -11,12 +23,28 @@ $(document).ready(function() {
                     return name;
                 });
       //cách ra khi gặp từ viết hoa
-    
-      
-      // alert(name);
+
     });
+      //add
+      var btnAdd = $('#btn_add');
+      var contentList = $(".list_Item").html();
+
+      // btnAdd.click(function () {
+      //     addnewsong();
+      // });
+
+      function addnewsong() {
+          var newSong = $('#addnewsong_box').val();
+          $("#listsong").append('<li class="list_Item"></li>');
+          $(".list_Item:last-child").append(contentList);
+          $(".list_Item:last-child .listItem--title").text(function (origText) {
+              return newSong;
+          });
+          var index = $(".list_Item:last-child").index();
+          $(".list_Item:last-child").attr('id', 'song-' + index + '');
+          $('.list_Item:last-child').find("a.remove_song").attr('id', 'delete-song-' + index + '');
+      }
     
- 
  
  
     //
