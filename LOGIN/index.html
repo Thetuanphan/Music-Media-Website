@@ -5,6 +5,8 @@
     <link rel="stylesheet" type "text/css" href="style.css">
     <script src="all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -22,15 +24,15 @@
                     <input type="password" name="pass" id="pass" placeholder="Enter Password">
                 </div>
                 <br>
-                <div>
-                    <button class="signIn" type="button" onclick="check_id()" ;>SIGN IN</button>
-                </div>
-
+                <button type="button" class="signIn" onclick="check_id()" ;>Sign In</button>
                 <br>
                 <div class="forgotPassword">
                     <a href="#">Forgot Password?</a>
                 </div>
+                <p class="signInWith">- Or Sign In With -</p>
                 <br>
+                <button type="button" class="btn btn-info ">Facebook</button>
+                <button type="button" class="btn btn-danger">Email</button>
 
             </form>
         </div>
