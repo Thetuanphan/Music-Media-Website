@@ -171,8 +171,12 @@ hr{
     height: 40px;
 }
 .current-song {
-    background-color: var(--primary-2);
+    background-color: #B796FF;
     border-radius: 10px;
+    color: #E6DE70;
+}
+.current-song h6{
+    color: #E6DE70;
 }
 
 #album_1{
