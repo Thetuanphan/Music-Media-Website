@@ -45,40 +45,14 @@
             return "";
         }
         function onload() {
-            load_ten_hinhanh();
-            load_album();
-        }
-
-        function load_ten_hinhanh() {
             var tennd = getCookie('tennd');
             var avatar = getCookie('ava');
             $("#username").text(tennd);
             $("#avtuser").attr("src", avatar);
             $(".userName").text(tennd);
             $(".avtUser").attr("src", avatar);
+            search_album();
         }
-        function load_album() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var listSearchResult = JSON.parse(this.responseText);
-                    var x = listSearchResult.length;
-                    var index = 0;
-                    $(".topMusicItem .itemContainer .item").each(function (index, value) {
-                        if (index < x) {
-                            $(this).find("img").attr('src', listSearchResult[index].LinkHinhAnh);
-                        }
-                        else{
-                            $(this).parents( ".topMusicItem" ).hide();
-                        }
-                        index++;
-                    })
-                }
-            }
-            //send request
-            xhttp.open("GET", "http://localhost/Music-Media-Website/server/postcontroller.php?action=select", true);
-            xhttp.send();
-        };
 
     function search_album() {
       //get keyword
