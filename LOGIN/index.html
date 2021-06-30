@@ -12,6 +12,34 @@
 
 </head>
 
+<script>
+      function login() {
+        // lấy tài khoản mất khẩu
+        var user =  document.getElementById("user").value;
+        var pass =  document.getElementById("pass").value;
+        //
+       
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {   
+         // var listSearchResult = JSON.parse(this.responseText);
+         //alert(this.responseText);
+        	var kq = this.responseText;
+		if(kq == "true")
+		{
+        window.location.href ="http://localhost/Music-Media-Website/Branch_admin/user/UserPage.html";
+    }
+		else
+		{alert("login fail");}
+        }
+        }
+      //send request
+   //http://localhost/Music-Media-Website/server/postcontroller.php?action=login&user=linh&pass=1
+      xhttp.open("GET","http://localhost/Music-Media-Website/server/postcontroller.php?action=login&user="+user+"&pass="+pass, true);
+      xhttp.send();
+}
+</script>
+
 <body>
     <div class="container">
     <div class="loginbox">
@@ -28,7 +56,7 @@
                     <input type="password" name="pass" id="pass" placeholder="Enter Password">
                 </div>
                 <br>
-                <a href="../Branch_admin/user/UserPage.html"><button type="button" class="signIn" onclick="check_id()" ;>Sign In</button></a>
+                <a ><button type="button" class="signIn" onclick="login()";>Sign In</button></a>
                 <br>
                 <div class="forgotPassword">
                     <a href="#">Forgot Password?</a>

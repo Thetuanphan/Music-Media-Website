@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+
     //your code here
 
     document.getElementById("file-upload").addEventListener("change", handleFiles, false);

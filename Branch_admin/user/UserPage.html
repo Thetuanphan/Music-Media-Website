@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../../img/logo/MS_64.png" rel="shortcut icon"/>
+    <link href="../../../img/logo/MS_64.png" rel="shortcut icon" />
 
     <title>User Page</title>
     <!-- boostrap -->
@@ -28,10 +28,93 @@
 
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        function onload() {
+            load_ten_hinhanh();
+            load_album();
+        }
 
+        function load_ten_hinhanh() {
+            var tennd = getCookie('tennd');
+            var avatar = getCookie('ava');
+            $("#username").text(tennd);
+            $("#avtuser").attr("src", avatar);
+            $(".userName").text(tennd);
+            $(".avtUser").attr("src", avatar);
+        }
+        function load_album() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var listSearchResult = JSON.parse(this.responseText);
+                    var x = listSearchResult.length;
+                    var index = 0;
+                    $(".topMusicItem .itemContainer .item").each(function (index, value) {
+                        if (index < x) {
+                            $(this).find("img").attr('src', listSearchResult[index].LinkHinhAnh);
+                        }
+                        else{
+                            $(this).parents( ".topMusicItem" ).hide();
+                        }
+                        index++;
+                    })
+                }
+            }
+            //send request
+            xhttp.open("GET", "http://localhost/Music-Media-Website/server/postcontroller.php?action=select", true);
+            xhttp.send();
+        };
+
+    function search_album() {
+      //get keyword
+     var keyword=  document.getElementById("keyword").value;  
+      //
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {   
+            var listSearchResult = JSON.parse(this.responseText);
+                    var x = listSearchResult.length;
+                    var index = 0;
+                    $(".topMusicItem .itemContainer .item").each(function (index, value) {
+                        if (index < x) {
+                            $(this).find("img").attr('src', listSearchResult[index].LinkHinhAnh);
+                            $(this).parents( ".topMusicItem" ).show();
+                        }
+                        else{
+                            $(this).parents( ".topMusicItem" ).hide();
+                        }
+                        index++;
+                    })
+        }
+        }
+    //send request
+    xhttp.open("GET", "http://localhost/Music-Media-Website/server/postcontroller.php?action=search&keyword="+keyword, true);
+      xhttp.send();
+    }
+
+
+
+
+
+    </script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="onload()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -122,7 +205,7 @@
                         <a class="collapse-item" href="login.html">Rock</a>
                         <a class="collapse-item" href="register.html">Pop</a>
                         <a class="collapse-item" href="forgot-password.html">Ballad</a>
-                        <a class="collapse-item" >Jazz</a>
+                        <a class="collapse-item">Jazz</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Theo Khu Vực</h6>
                         <a class="collapse-item" href="">Nhạc Việt</a>
@@ -181,10 +264,11 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Nhập tên bài hát, nghệ sĩ,..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Nhập tên bài hát, nghệ sĩ,..." aria-label="Search"
+                                aria-describedby="basic-addon2" id="keyword" name="keyword">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="button" id="btnsearch" onclick="search_album()">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -262,7 +346,7 @@
                                     </div>
                                     <div>
                                         <div class="small text-gray-500"> 2, 2021</div>
-                                       Chúng tôi đã gỡ bài hát bạn vừa đăng vì lí do bản quyền
+                                        Chúng tôi đã gỡ bài hát bạn vừa đăng vì lí do bản quyền
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Đọc Thêm</a>
@@ -281,23 +365,22 @@
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
-                                Tin Nhắn
+                                    Tin Nhắn
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">Chào bạn ! bạn đã nghe sản phẩm âm nhạc mới nhất của Jack và K ATM chưa ?</div>
+                                        <div class="text-truncate">Chào bạn ! bạn đã nghe sản phẩm âm nhạc mới nhất của
+                                            Jack và K ATM chưa ?</div>
                                         <div class="small text-gray-500">Minh Hồng · 2m</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -307,8 +390,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -323,11 +405,13 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Bùi Lan Hương cùng ca khúc "Ngày Chưa giông bão" đang khuấy động bảng xếp hạng</div>
+                                        <div class="text-truncate">Bùi Lan Hương cùng ca khúc "Ngày Chưa giông bão" đang
+                                            khuấy động bảng xếp hạng</div>
                                         <div class="small text-gray-500">Hằng Linh · 2w</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Hiển Thị Nhiều Tin Nhắn Hơn</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Hiển Thị Nhiều Tin
+                                    Nhắn Hơn</a>
                             </div>
                         </li>
 
@@ -337,9 +421,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Võ Duy Phong</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small " id="username"></span>
+                                <img class="img-profile rounded-circle " id="avtuser"
+                                    src="data:image/jpeg;base64,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">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -372,8 +456,9 @@
                 <!-- phần linh làm -->
                 <div class="container mt-5 ">
                     <!-- âm nhạc for u  -->
-                    <img class="avtUser" src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_jpeg/cover/2/7/0/6/2706df91bf6c35a1eae8a61d3fc04c9b.jpg">
-                    <p class="userName ">Võ Duy Phong</p>
+                    <img class="avtUser"
+                        src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_jpeg/cover/2/7/0/6/2706df91bf6c35a1eae8a61d3fc04c9b.jpg">
+                    <p class="userName "></p>
                     <hr class="rounded">
                     <div class="musicForU">
                         <div class="topMusicTitle">
@@ -586,7 +671,7 @@
                     </div>
                     <!-- end radio -->
                     <!-- add love song -->
-                    
+
                     <div class="radio mt-5">
                         <div class="topMusicTitle">
                             <p><strong>Bài Hát Đã Yêu Thích</strong></p>
@@ -596,8 +681,8 @@
                                 <div class="topMusicItem">
                                     <div class="itemContainer">
                                         <div class="item">
-                                            <img src="https://i.ytimg.com/vi/GgQFO8dL5XQ/maxresdefault.jpg"
-                                                alt="" class="img-fluid">
+                                            <img src="https://i.ytimg.com/vi/GgQFO8dL5XQ/maxresdefault.jpg" alt=""
+                                                class="img-fluid">
                                             <div class="opacity hide"></div>
                                             <div class="actionContainer ">
                                                 <button class="btn btnTool hide"><i
@@ -611,12 +696,12 @@
                                     </div>
                                     <p class="itemTitle"><strong>Dalab - Thanh Xuân</strong></p>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                     <!-- end love song -->
                     <!-- add result -->
-                    
+
                     <div class="moreOption">
                         <div>
                             <div class="radio mt-5">
@@ -765,9 +850,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             <p class="itemTitle"><strong>Britney Spear-Toxic</strong></p>
-                
-                                        <!--</div>
+                                            <p class="itemTitle"><strong>Britney Spear-Toxic</strong></p>
+
+                                            <!--</div>
                                     </div>
                                     <div class="col-lg-2 col-md-3 next_show">
                                         <div class="topMusicItem">
@@ -815,45 +900,45 @@
                         </div>
                     </div>
                 </div> -->
-            </div>
+                                        </div>
 
 
-            <!-- playlist -->
-            <!-- <ul id="playlist">
+                                        <!-- playlist -->
+                                        <!-- <ul id="playlist">
                     <li><a href="./src/mp3/Laylalay-JackG5R-7003742.mp3">lay la lay</a></li>
                     <li><a href="./src/mp3/LoSayByeLaBye-LemeseChangg-6926941.mp3">lỡ say bye là bye</a></li>
                     <li><a href="./src/mp3/SaiGonDauLongQua-HuaKimTuyenHoangDuyen-6992977.mp3">sài gòn đau lòng
                             quá</a></li>
                 </ul> -->
 
-                <!-- <div class="audioContainer text-center fixed-bottom">
+                                        <!-- <div class="audioContainer text-center fixed-bottom">
                     <audio src="" controls id="audioPlayer">
                         Sorry, your browser doesn't support html5!
                     </audio>
                 </div> -->
 
 
-            <!-- end phần linh làm -->
+                                        <!-- end phần linh làm -->
 
 
-        </div>
-    </div>
-    <!--end Content Wrapper -->
-    </div>
+                                    </div>
+                                </div>
+                                <!--end Content Wrapper -->
+                            </div>
 
 
-    </div>
-    <script>
+                        </div>
+                        <script>
         // loads the audio player
 
         // pre show - next show
-    </script>
-    <script>
-       
+                        </script>
+                        <script>
 
-    </script>
-    <script src="js/index.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
+
+                        </script>
+                        <script src="js/index.js"></script>
+                        <script src="js/sb-admin-2.min.js"></script>
 </body>
 
 </html>
